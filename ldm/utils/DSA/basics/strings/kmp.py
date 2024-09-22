@@ -31,7 +31,7 @@ def kmp(s, p):
 
 
 if __name__ == "__main__":
-    # print(lps("AAACAAAA"))
-    # print(kmp("AAAAAAAOOAAAAAAAACAAAABBBBBB", "AAACAAAA"))
+    print(lps("AAACAAAA"))
+    print(kmp("AAAAAAAOOAAAAAAAACAAAABBBBBB", "AAACAAAA"))
     print(lps("issipi"))
     print(kmp("mississippi", "issipi"))
