@@ -163,6 +163,7 @@ print(is_point_in_polygon(point_on_edge, polygon))  # Output: True
 
 """
 Given a list of points in 2D space, write a Python function to find the pair of points that are closest to each other in terms of Euclidean distance. Optimize your solution to have a time complexity better than O(n²).
+https://www.youtube.com/watch?v=ldHA8UcQI9Q&ab_channel=Insidecode
 """
 import math
 
@@ -231,14 +232,17 @@ def brute_force_closest_pair(P):
     return (min_dist, min_pair)
 
 def closest_split_pair(Px, Py, delta, best_pair):
+    # NOTE here Py contains both left and right points before the current split
     n = len(Px)
     mid_x = Px[n // 2][0]
-    # Create strip containing points within delta of mid_x
+    # Find points within the region of interest
+    # Which could potentially give a shorter dist for a point in left with another in right
     Sy = [p for p in Py if abs(p[0] - mid_x) < delta]
     min_dist = delta
     len_Sy = len(Sy)
     min_pair = best_pair
     for i in range(len_Sy):
+        # Py is sorted in downward inc fashion, so we only need to check 6 other points below it.
         for j in range(i + 1, min(i + 7, len_Sy)):
             p1, p2 = Sy[i], Sy[j]
             dist = euclidean_distance(p1, p2)
